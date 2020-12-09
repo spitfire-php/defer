@@ -1,0 +1,18 @@
+{
+    "name": "spitfire/defer",
+    "description": "Allozs spitfire apps to defer tasks to be executed at a later point",
+    "type": "library",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"spitfire\\defer\\" : "./src/"
+		}
+	},
+    "authors": [
+        {
+            "name": "César de la Cal Bretschneider",
+            "email": "cesar@magic3w.com"
+        }
+    ],
+    "require": {}
+}
