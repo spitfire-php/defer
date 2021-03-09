@@ -12,7 +12,7 @@ class AsyncModel extends Model
 	 * @return Schema
 	 */
 	public function definitions(Schema $schema) {
-		$schema->task = new \TextField();
+		$schema->task = new TextField();
 		$schema->result = new \TextField();
 		$schema->status = new \EnumField('pending', 'processing', 'success', 'error', 'aborted');
 		$schema->ttl = new \IntegerField(true);

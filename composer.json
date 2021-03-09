@@ -3,6 +3,8 @@
     "description": "Allozs spitfire apps to defer tasks to be executed at a later point",
     "type": "library",
 	"license": "MIT",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"spitfire\\defer\\" : "./src/"
@@ -14,5 +16,8 @@
             "email": "cesar@magic3w.com"
         }
     ],
-    "require": {}
+    "require": {
+        "spitfire/cli": "dev-master",
+        "spitfire/database": "dev-master"
+    }
 }

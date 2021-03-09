@@ -1,0 +1,110 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "1cd3a2c3bd805cadd7080cfeced69443",
+    "packages": [
+        {
+            "name": "spitfire/cli",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://phabricator.magic3w.com/source/spitfire-cli.git",
+                "reference": "e9a8edcac4da73ab4567c4c463dbbdc8e19a7160"
+            },
+            "require": {
+                "spitfire/collection": "dev-master"
+            },
+            "default-branch": true,
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "César de la Cal Bretschneider",
+                    "email": "cesar@magic3w.com"
+                }
+            ],
+            "description": "CLI Components for Spitfire",
+            "time": "2020-12-09T18:35:05+00:00"
+        },
+        {
+            "name": "spitfire/collection",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://phabricator.magic3w.com/source/spitfire-collection.git",
+                "reference": "91331bd1f15d9c15d363734bd477c7bd363291a5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "spitfire\\collection\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "César de la Cal Bretschneider",
+                    "email": "cesar@magic3w.com"
+                }
+            ],
+            "description": "Provides collections for spitfire/engine",
+            "time": "2020-10-19T09:26:22+00:00"
+        },
+        {
+            "name": "spitfire/database",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://phabricator.magic3w.com/source/spitfire-database.git",
+                "reference": "fb0764e966a5eb1d4fb751f8ec76405422f008e6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "spitfire\\storage\\database\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "César de la Cal Bretschneider",
+                    "email": "cesar@magic3w.com"
+                }
+            ],
+            "description": "Database components for spitfire/engine",
+            "time": "2020-11-04T15:22:44+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "spitfire/cli": 20,
+        "spitfire/database": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}

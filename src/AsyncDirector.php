@@ -1,5 +1,6 @@
 <?php namespace spitfire\defer;
 
+use spitfire\cli\Console;
 use spitfire\mvc\Director;
 use Throwable;
 use function console;
@@ -9,10 +10,12 @@ class AsyncDirector extends Director
 {
 	
 	private $db;
+	private $console;
 	
-	public function __construct(\spitfire\storage\database\DB $db)
+	public function __construct(\spitfire\storage\database\DB $db, Console $console)
 	{
 		$this->db = $db;
+		$this->console = $console;
 	}
 	
 	public function pending() {
@@ -31,7 +34,7 @@ class AsyncDirector extends Director
 			if ($record->ttl < 1) {
 				$record->status = 'aborted';
 				$record->store();
-				console()->error('Task was abandoned for too many failures')->ln();
+				$this->console->error('Task was abandoned for too many failures')->ln();
 				continue;
 			}
 			
@@ -44,7 +47,7 @@ class AsyncDirector extends Director
 				$record->result = $result->getPayload();
 				$record->status = 'success';
 				$record->store();
-				console()->success('Task processed successfully')->ln();
+				$this->console->success('Task processed successfully')->ln();
 			} 
 			catch (FailureException$ex) {
 				$result = $task->handleFailure($ex);
@@ -59,7 +62,7 @@ class AsyncDirector extends Director
 				$copy->task = $record->task;
 				$copy->supersedes = $record;
 				$copy->store();
-				console()->error('Task failed')->ln();
+				$this->console->error('Task failed')->ln();
 			}
 			catch (Throwable$e) {
 				$record->result = $e->getCode() . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
@@ -73,7 +76,7 @@ class AsyncDirector extends Director
 				$copy->task = $record->task;
 				$copy->supersedes = $record;
 				$copy->store();
-				console()->error('Task failed - Unknown reason')->ln();
+				$this->console->error('Task failed - Unknown reason')->ln();
 			}
 		}
 	}
