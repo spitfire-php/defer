@@ -7,10 +7,6 @@ abstract class Task implements Serializable
 	
 	private $settings;
 	
-	public function __construct($settings) {
-		$this->settings = $settings;
-	}
-	
 	public function serialize() {
 		return serialize(['settings' => $this->settings]);
 	}
@@ -33,6 +29,10 @@ abstract class Task implements Serializable
 	 */
 	public function handleFailure(FailureException$e): Result {
 		return new Result(sprintf('%s %s%s%s', $e->getCode(), $e->getMessage(), PHP_EOL, $e->getExtended()));
+	}
+	
+	public function setSettings($settings) {
+		$this->settings = $settings;
 	}
 	
 	public function getSettings() {
