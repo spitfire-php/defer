@@ -18,6 +18,10 @@
     ],
     "require": {
         "spitfire/cli": "dev-master",
-        "spitfire/database": "dev-master"
-    }
+        "spitfire/database": "dev-master",
+        "spitfire/exception": "^0.1.0"
+    },
+	"require-dev": {
+		"spitfire/dependency-provider": "^0.2.0"
+	}
 }
