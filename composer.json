@@ -16,6 +16,12 @@
             "email": "cesar@magic3w.com"
         }
     ],
+	
+	"scripts": {
+		"test": [
+			"./vendor/bin/phpstan analyse ./src --level 7"
+		]
+	},
     "require": {
         "spitfire/cli": "dev-master",
         "spitfire/database": "dev-master",
