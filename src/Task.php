@@ -18,18 +18,8 @@ abstract class Task implements Serializable
 	
 	/**
 	 * 
-	 * @throws FailureException
 	 */
 	abstract function body() : Result;
-	
-	/**
-	 * 
-	 * @param FailureException $e
-	 * @return Result
-	 */
-	public function handleFailure(FailureException$e): Result {
-		return new Result(sprintf('%s %s%s%s', $e->getCode(), $e->getMessage(), PHP_EOL, $e->getExtended()));
-	}
 	
 	public function setSettings($settings) {
 		$this->settings = $settings;

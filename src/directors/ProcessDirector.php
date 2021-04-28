@@ -67,21 +67,6 @@ class ProcessDirector extends Director
 				$record->store();
 				$this->console->success('Task processed successfully')->ln();
 			} 
-			catch (FailureException$ex) {
-				$result = $task->handleFailure($ex);
-				$record->result = $result->getPayload();
-				$record->status = 'error';
-				$record->store();
-				
-				$copy = $this->db->table('spitfire\core\async\Async')->newRecord();
-				$copy->status = 'pending';
-				$copy->ttl = $record->ttl - 1;
-				$copy->scheduled = $record->scheduled + 300;
-				$copy->task = $record->task;
-				$copy->supersedes = $record;
-				$copy->store();
-				$this->console->error('Task failed')->ln();
-			}
 			catch (Throwable$e) {
 				$record->result = $e->getCode() . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
 				$record->status = 'error';
