@@ -2,30 +2,16 @@
 
 use Serializable;
 
-abstract class Task implements Serializable
+/**
+ * Classes that implement this interface can be executed in the background, 
+ * allowing our application to attach logic to a certain task.
+ */
+interface Task
 {
-	
-	private $settings;
-	
-	public function serialize() {
-		return serialize(['settings' => $this->settings]);
-	}
-	
-	public function unserialize($serialized) {
-		$data = unserialize($serialized);
-		$this->settings = $data['settings'];
-	}
-	
 	/**
 	 * 
+	 * @param mixed $settings
+	 * @return Result
 	 */
-	abstract function body() : Result;
-	
-	public function setSettings($settings) {
-		$this->settings = $settings;
-	}
-	
-	public function getSettings() {
-		return $this->settings;
-	}
+	function body($settings) : Result;
 }

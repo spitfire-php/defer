@@ -47,8 +47,6 @@ class ProcessDirector extends Director
 				continue;
 			}
 			
-			$task->setSettings(json_decode($task->setttings));
-			
 			if ($record->ttl < 1) {
 				$record->status = 'aborted';
 				$record->store();
@@ -61,7 +59,7 @@ class ProcessDirector extends Director
 			$record->store();
 			
 			try {
-				$result = $task->body();
+				$result = $task->body(json_decode($task->setttings));
 				$record->result = $result->getPayload();
 				$record->status = 'success';
 				$record->store();
