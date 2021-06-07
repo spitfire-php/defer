@@ -24,7 +24,7 @@
 	},
     "require": {
         "spitfire/cli": "dev-master",
-        "spitfire/database": "dev-master",
+        "spitfire/database": "^0.1.0",
         "spitfire/exception": "^0.1.0"
     },
 	"require-dev": {
