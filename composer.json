@@ -19,15 +19,17 @@
 	
 	"scripts": {
 		"test": [
-			"./vendor/bin/phpstan analyse ./src --level 7"
+			"./vendor/bin/phpstan analyse ./src --level 7",
+			"./vendor/bin/phpunit ./tests"
 		]
 	},
     "require": {
-        "spitfire/cli": "dev-master",
-        "spitfire/database": "^0.1.0",
-        "spitfire/exception": "^0.1.0"
+        "spitfire/cli": "^0.1.0",
+        "spitfire/exception": "^0.1.0",
+        "andrewbreksa/rsmq": "^1.2"
     },
 	"require-dev": {
-		"spitfire/dependency-provider": "^0.2.0"
+		"spitfire/dependency-provider": "^0.2.0",
+        "phpunit/phpunit": "^9.5"
 	}
 }

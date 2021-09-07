@@ -1,24 +1,51 @@
 <?php namespace spitfire\defer;
 
+use AndrewBreksa\RSMQ\RSMQClient;
+use JsonException;
+use Serializable;
+
 class TaskFactory
 {
 	
-	private $db;
+	/**
+	 * 
+	 * @var RSMQClient
+	 */
+	private $client;
 	
-	public function __construct(\spitfire\storage\database\DB $db)
+	/**
+	 * 
+	 * @var string
+	 */
+	private $queue;
+	
+	public function __construct(RSMQClient $client, string $queue)
 	{
-		$this->db = $db;
+		$this->client = $client;
+		$this->queue = $queue;
 	}
 	
-	public function defer($defer, string $task, $settings, $ttl = 10) 
+	/**
+	 * 
+	 * @param int $defer
+	 * @param string $task
+	 * @param Serializable|mixed[]|string|bool|int|float $settings
+	 * 
+	 * @throws JsonException
+	 */
+	public function defer(int $defer, string $task, $settings) : string
 	{
-		$copy = $this->db->table('spitfire\core\async\Async')->newRecord();
-		$copy->status = 'pending';
-		$copy->ttl = $ttl;
-		$copy->scheduled = $defer < 86400 * 365 * 50? time() + $defer : $defer; #It's been the timestamp's 50th aniversary this year
-		$copy->task = $task;
-		$copy->settings = json_encode($settings);
-		$copy->store();
+		if ($defer > 86400 * 365 * 50) {
+			$defer = $defer - time();
+		}
+		
+		$id = $this->client->sendMessage($this->queue, json_encode([
+			'task' => $task,
+			'settings' => $settings
+		], JSON_THROW_ON_ERROR), $defer);
+		
+		
+		return strval($id);
 	}
 	
 }
