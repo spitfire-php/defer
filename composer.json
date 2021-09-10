@@ -26,7 +26,7 @@
     "require": {
         "spitfire/cli": "^0.1.0",
         "spitfire/exception": "^0.1.0",
-        "andrewbreksa/rsmq": "^1.2"
+        "andrewbreksa/rsmq": "^2.0"
     },
 	"require-dev": {
 		"spitfire/dependency-provider": "^0.2.0",
